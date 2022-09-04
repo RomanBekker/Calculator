@@ -109,7 +109,6 @@ public class Main {
         } else {
             return "throws Exception //т.к. в римской системе нет отрицательных чисел и нуля";
         }
-        System.out.println("test");
         return result;
     }
 }
