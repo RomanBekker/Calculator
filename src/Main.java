@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
@@ -99,7 +98,7 @@ public class Main {
                     } catch (Exception e) {
                         return "throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)";
                     }
-                    }
+            }
         }
 
         //Производим арифметические вычисления с арабскими числами:
@@ -123,7 +122,7 @@ public class Main {
                     } catch (Exception e) {
                         return "throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)";
                     }
-                    }
+            }
         }
 
         //Словарь для перевода вычисленного значения в римскую систему счисления:
