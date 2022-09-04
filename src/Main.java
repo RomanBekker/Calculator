@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Введите одну из следующих операций с двумя числами (от 1 до 10): a + b, a - b, a * b, a / b (число_знак_число)");
         System.out.println("Input:");
@@ -11,13 +11,22 @@ public class Main {
         System.out.println("Output:\n" + calc(input));
     }
 
-    public static String calc(String input) {
+    public static String calc(String input) throws Exception {
         //Преобразовали входящую строку в массив строк:
         String[] strings = input.split(" ");
         if (strings.length > 3) {
-            return "throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)";
+            try {
+                throw new Exception();
+            } catch (Exception e) {
+                return "throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)";
+            }
+
         } else if (strings.length < 3) {
-            return "Два операнда и один оператор должны быть разделены между собой ПРОБЕЛАМИ (число_знак_число)";
+            try {
+                throw new Exception();
+            } catch (Exception e) {
+                return "Два операнда и один оператор должны быть разделены между собой ПРОБЕЛАМИ (число_знак_число)";
+            }
         }
 
         //Поля для римских чисел:
@@ -42,7 +51,11 @@ public class Main {
 
         //Одно из вводимых чисел римское, другое арабское
         if ((a == 0 && b != 0) || (a != 0 && b == 0)) {
-            return "throws Exception //т.к. используются одновременно разные системы счисления либо введены числа вне интервала от 1 до 10";
+            try {
+                throw new Exception();
+            } catch (Exception e) {
+                return "throws Exception //т.к. используются одновременно разные системы счисления либо введены числа вне интервала от 1 до 10";
+            }
         }
 
         //Если к арабской, то заполняем поля d и c для арабских чисел (распарсить первую и третью строки массива).
@@ -56,39 +69,61 @@ public class Main {
             }
             //Ограничение на ввод арабских чисел (от 1 до 10)
             if (c > 10 || c < 1 || d > 10 || d < 1) {
-                return "Необходимо ввести числа от 1 до 10!";
+                try {
+                    throw new Exception();
+                } catch (Exception e) {
+                    return "Необходимо ввести числа от 1 до 10!";
+                }
             }
         }
 
         //Производим арифметические вычисления с римскими числами:
         if (a != 0 && b != 0) {
 
-            if (strings[1].equals("+")) {
-                resultRim = a + b;
-            } else if (strings[1].equals("-")) {
-                resultRim = a - b;
-            } else if (strings[1].equals("/")) {
-                resultRim = a / b;
-            } else if (strings[1].equals("*")) {
-                resultRim = a * b;
-            } else {
-                return "throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)";
-            }
+            switch (strings[1]) {
+                case "+":
+                    resultRim = a + b;
+                    break;
+                case "-":
+                    resultRim = a - b;
+                    break;
+                case "/":
+                    resultRim = a / b;
+                    break;
+                case "*":
+                    resultRim = a * b;
+                    break;
+                default:
+                    try {
+                        throw new Exception();
+                    } catch (Exception e) {
+                        return "throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)";
+                    }
+                    }
         }
 
         //Производим арифметические вычисления с арабскими числами:
         else if (a == 0 && b == 0) {
-            if (strings[1].equals("+")) {
-                resultArab = c + d;
-            } else if (strings[1].equals("-")) {
-                resultArab = c - d;
-            } else if (strings[1].equals("/")) {
-                resultArab = c / d;
-            } else if (strings[1].equals("*")) {
-                resultArab = c * d;
-            } else {
-                return "throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)";
-            }
+            switch (strings[1]) {
+                case "+":
+                    resultArab = c + d;
+                    break;
+                case "-":
+                    resultArab = c - d;
+                    break;
+                case "/":
+                    resultArab = c / d;
+                    break;
+                case "*":
+                    resultArab = c * d;
+                    break;
+                default:
+                    try {
+                        throw new Exception();
+                    } catch (Exception e) {
+                        return "throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)";
+                    }
+                    }
         }
 
         //Словарь для перевода вычисленного значения в римскую систему счисления:
@@ -107,7 +142,11 @@ public class Main {
         } else if (resultRim > 0) {
             result = roman[resultRim];
         } else {
-            return "throws Exception //т.к. в римской системе нет отрицательных чисел и нуля";
+            try {
+                throw new Exception();
+            } catch (Exception e) {
+                return "throws Exception //т.к. в римской системе нет отрицательных чисел и нуля";
+            }
         }
         return result;
     }
